@@ -24,6 +24,22 @@ body { margin: 0; background: #333; }
   height: $SQUARE_HEIGHT;
   width: $SQUARE_HEIGHT;
   display: inline-block;
+  position: relative;
+}
+
+.debug {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.piece {
+  font-size: 80px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  line-height: $SQUARE_HEIGHT;
+  margin: 0 auto;
 }
 
 .row:nth-child(2n+1) {
