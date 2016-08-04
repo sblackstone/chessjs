@@ -18,6 +18,6 @@ RUN \
 
 RUN \
   rm -rf vendors/cache/* && \
-  apk del mariadb-dev build-base git
+  apk del build-base git
   
 ADD . $HOME
