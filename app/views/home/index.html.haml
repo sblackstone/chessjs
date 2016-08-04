@@ -1,1 +1,5 @@
-Hello!
+#board><
+  - 0.upto(7) do |row|
+    .row><
+      - 0.upto(7) do |col|
+        .square{"data-num": row*8 + col }><

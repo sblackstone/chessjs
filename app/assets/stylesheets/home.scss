@@ -2,5 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body { margin: 0; }
-canvas { width: 100%; height: 100%; }
+$SQUARE_HEIGHT: 100px;
+
+body { margin: 0; background: #333; }
+
+#board {
+  margin: 100px auto;
+  display: block;
+  border: 1px solid #000;
+  width: $SQUARE_HEIGHT * 8;
+  box-shadow: 0px 0px 45px #111;
+}
+
+.row {
+  border: 0;
+  background-color: #fff;
+  height: $SQUARE_HEIGHT;
+}
+
+.square {
+  height: $SQUARE_HEIGHT;
+  width: $SQUARE_HEIGHT;
+  display: inline-block;
+}
+
+.row:nth-child(2n+1) {
+  .square:nth-child(2n) {
+    background: green;
+  };
+};
+
+.row:nth-child(2n) {
+  .square:nth-child(2n+1) {
+    background: green;
+  };
+};
