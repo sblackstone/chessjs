@@ -59,15 +59,27 @@ class Chess.Board
           
   at: (i)->
     @board[i]
+  
+  piece_to_str: (p)->
+    switch p
+      when Chess.Pieces.EMPTY        then "EE"
+      when Chess.Pieces.WHITE_PAWN   then "WP"
+      when Chess.Pieces.WHITE_ROOK   then "WR"
+      when Chess.Pieces.WHITE_KNIGHT then "WN"
+      when Chess.Pieces.WHITE_BISHOP then "WB"
+      when Chess.Pieces.WHITE_KING   then "WK"
+      when Chess.Pieces.WHITE_QUEEN  then "WQ"
+      when Chess.Pieces.BLACK_PAWN   then "BP"
+      when Chess.Pieces.BLACK_ROOK   then "BR"
+      when Chess.Pieces.BLACK_KNIGHT then "BN"
+      when Chess.Pieces.BLACK_BISHOP then "BB"
+      when Chess.Pieces.BLACK_KING   then "BK"
+      when Chess.Pieces.BLACK_QUEEN  then "BQ"
+      else "QQ"
     
   dump: ->
     for r in [7..0]
       v = []
       for c in [0..7]
-        k = @at_rc(r,c)
-        if k >= 0
-          k = " " + k
-        else
-          k = "#{k}"
-        v.push k
+        v.push @piece_to_str @at_rc(r,c)
       console.log v

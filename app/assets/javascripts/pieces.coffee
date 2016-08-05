@@ -1,4 +1,5 @@
 Chess.Pieces = {
+  EMPTY:        0,
   WHITE_PAWN:   1,
   WHITE_ROOK:   2,
   WHITE_KNIGHT: 3,
