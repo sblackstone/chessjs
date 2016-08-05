@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$SQUARE_HEIGHT: 100px;
+$SQUARE_HEIGHT: 50px;
 
 body { margin: 0; background: #333; }
 
@@ -34,7 +34,7 @@ body { margin: 0; background: #333; }
 }
 
 .piece {
-  font-size: 80px;
+  font-size: 40px;
   text-align: center;
   display: inline-block;
   width: 100%;
