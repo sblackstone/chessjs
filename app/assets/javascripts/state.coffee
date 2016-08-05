@@ -6,6 +6,7 @@ class Chess.State
     console.log "state: reset state"
       
   constructor: (view)->
+    window.state = @
     @reset_state()
 
 

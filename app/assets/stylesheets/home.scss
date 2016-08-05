@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$SQUARE_HEIGHT: 50px;
+$SQUARE_HEIGHT: 76px;
 
 body { margin: 0; background: #333; }
 
 #board {
-  margin: 100px auto;
+  margin: 25px auto;
   display: block;
   border: 1px solid #000;
   width: $SQUARE_HEIGHT * 8;
@@ -29,12 +29,13 @@ body { margin: 0; background: #333; }
 
 .debug {
   position: absolute;
+  font-size: 10px;
   top: 0;
   left: 0;
 }
 
 .piece {
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   display: inline-block;
   width: 100%;

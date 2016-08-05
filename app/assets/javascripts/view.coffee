@@ -6,3 +6,11 @@ class Chess.View
       
   draw: ->
     console.log "view: draw"
+
+    for sq in $('.square')
+      s = @state.board.str_at($(sq).data("num"))
+      $(sq).find('.piece').removeClass().addClass("piece").addClass(s)
+      s = "" if s == "EE"
+      $(sq).find('.piece').html s
+
+

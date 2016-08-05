@@ -1,7 +1,7 @@
 #board><
-  - 0.upto(7) do |row|
+  - 7.downto(0) do |row|
     .row><
       - 0.upto(7) do |col|
-        .square{"data-num": row*8 + col }>< 
-          .debug= row*8+col
-          .piece &#9812;
+        .square{"data-num": row*16 + col }>< 
+          .debug= row*16+col
+          .piece 

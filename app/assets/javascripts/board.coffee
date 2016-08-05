@@ -60,6 +60,10 @@ class Chess.Board
   at: (i)->
     @board[i]
   
+  
+  str_at: (i)->
+    @piece_to_str @at i
+    
   piece_to_str: (p)->
     switch p
       when Chess.Pieces.EMPTY        then "EE"
