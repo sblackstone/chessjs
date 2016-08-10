@@ -109,7 +109,11 @@ class Chess.State extends Chess.Board
     
   king_moves: (base_sq)->
     @jump_moves(base_sq, [1, -1, 15, 16, 17, -15, -16, -17])
-    
+  
+  pawn_moves: (base_sq)->
+    # TODO
+    []
+  
     
   light_up_moves: (base_sq, fn)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
