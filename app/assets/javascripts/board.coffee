@@ -3,10 +3,18 @@ class Chess.Board
   constructor: ->
     console.log "board: construct"
     @board = []
-    window.board = @
+    window.board = @ # debugging.
     for i in [0..127]
       @set(i, 0)
     @set_initial_board()
+
+  sq_is_color: (pos, color)->
+    if color == Chess.Colors.WHITE
+      @board[pos] > 0 
+    else if color == Chess.Colors.BLACK
+       @board[pos] < 0
+    else
+      false
  
   set_initial_board: ->
     @set 0, Chess.Pieces.WHITE_ROOK
