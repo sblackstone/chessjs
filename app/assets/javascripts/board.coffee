@@ -7,7 +7,6 @@ class Chess.Board
     for i in [0..127]
       @set(i, 0)
     @set_initial_board()
-    @dump()
  
   set_initial_board: ->
     @set 0, Chess.Pieces.WHITE_ROOK
