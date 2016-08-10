@@ -71,8 +71,48 @@ class Chess.State extends Chess.Board
     @view = view
     @view.set_state(@)
     @dump()
-
   
+  #####
+  #####
+  
+  square_off_board: (sq)->
+    return sq & 0x88
+  
+  
+  sliding_moves: (base_sq, vectors)->
+    arr = []
+    for k in vectors
+      t = if (k < 0) then 0 else 119
+      for sq in [(base_sq+k)..t] by k
+        break if @square_off_board(sq)
+        arr.push sq
+    return arr    
 
+  jump_moves: (base_sq, vectors)->
+    arr = []
+    for k in vectors
+      arr.push (base_sq + k) unless @square_off_board(base_sq+k)
+    return arr    
+    
 
+  bishop_moves: (base_sq)->
+    @sliding_moves(base_sq, [15, 17, -15, -17])
+  
+  rook_moves: (base_sq)->
+    @sliding_moves(base_sq, [16, -16, 1, -1])
 
+  queen_moves: (base_sq)->
+    @sliding_moves(base_sq, [15, 17, -15, -17, 16, -16, 1, -1])
+
+  knight_moves: (base_sq)->
+    @jump_moves(base_sq, [33, 31, 14, 18, -18, -14, -33, -31])
+    
+  king_moves: (base_sq)->
+    @jump_moves(base_sq, [1, -1, 15, 16, 17, -15, -16, -17])
+    
+    
+  light_up_moves: (base_sq, fn)->
+    $(".square[data-num=#{base_sq}]").css("background-color", "blue")
+    for j in @queen_moves(base_sq)
+      $(".square[data-num=#{j}]").css("background-color", "red")
+      
