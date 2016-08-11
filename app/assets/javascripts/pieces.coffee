@@ -1,3 +1,21 @@
+#
+# 0 0x0000 EMPTY
+
+# 1 0x0001 PAWN
+# 2 0x0010 ROOK
+# 3 0x0011 KNIGHT
+# 4 0x0100 BISHOP
+# 5 0x0101 QUEEN
+# 6 0x0110 KING
+
+# 9 0x1001 PAWN
+# A 0x1010 ROOK
+# B 0x1011 KNIGHT
+# C 0x1100 BISHOP
+# D 0x1101 QUEEN
+# E 0x1110 KING
+
+
 Chess.Pieces = {
   EMPTY:         0,
   WHITE_PAWN:    1,
@@ -6,12 +24,15 @@ Chess.Pieces = {
   WHITE_BISHOP:  4,
   WHITE_QUEEN:   5,
   WHITE_KING:    6,
-  BLACK_PAWN:   -1,
-  BLACK_ROOK:   -2,
-  BLACK_KNIGHT: -3,
-  BLACK_BISHOP: -4,
-  BLACK_QUEEN:  -5,
-  BLACK_KING:   -6,
+  BLACK_PAWN:    9,
+  BLACK_ROOK:   0xA,
+  BLACK_KNIGHT: 0xB,
+  BLACK_BISHOP: 0xC,
+  BLACK_QUEEN:  0xD,
+  BLACK_KING:   0xE,
   
 }
   
+  
+
+
