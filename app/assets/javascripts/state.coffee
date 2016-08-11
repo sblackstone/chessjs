@@ -111,12 +111,37 @@ class Chess.State extends Chess.Board
     @jump_moves(base_sq, [1, -1, 15, 16, 17, -15, -16, -17])
   
   pawn_moves: (base_sq)->
-    # TODO
-    []
+    if @turn() == Chess.Colors.WHITE
+      @white_pawn_moves(base_sq)
+      console.log "white pawns"
+    else
+      console.log "black pawns"
+      @black_pawn_moves(base_sq)
+
+  white_pawn_moves: (base_sq)->
+    moves = @jump_moves(base_sq, [16])
+    if @sq_is_color(base_sq + 15, Chess.Colors.BLACK)
+      moves.push base_sq + 15
+
+    if @sq_is_color(base_sq + 17, Chess.Colors.BLACK)
+      moves.push base_sq + 17
+
+    return moves
+      
+  black_pawn_moves: (base_sq)->
+    moves = @jump_moves(base_sq, [-16])
+    if @sq_is_color(base_sq - 15, Chess.Colors.WHITE)
+      moves.push base_sq - 15
+
+    if @sq_is_color(base_sq - 17, Chess.Colors.WHITE)
+      moves.push base_sq - 17
+    return moves
+
   
     
+        
   light_up_moves: (base_sq, fn)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
-    for j in @queen_moves(base_sq)
+    for j in @pawn_moves(base_sq)
       $(".square[data-num=#{j}]").css("background-color", "red")
       
