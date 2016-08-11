@@ -70,7 +70,13 @@ class Chess.Board
   
   str_at: (i)->
     @piece_to_str @at i
-    
+  
+  rank_of_square: (pos)->
+    pos >> 4
+  
+  file_of_square: (pos)->
+    pos & 7
+  
   piece_to_str: (p)->
     switch p
       when Chess.Pieces.EMPTY        then "EE"
