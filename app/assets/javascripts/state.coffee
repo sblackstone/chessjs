@@ -178,7 +178,7 @@ class Chess.State extends Chess.Board
             
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
-    for j in @pawn_moves(base_sq)
+    for j in @moves_for_sq(base_sq)
       console.log j
       $(".square[data-num=#{j}]").css("background-color", "red")
       
