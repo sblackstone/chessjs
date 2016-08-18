@@ -86,7 +86,6 @@ class Chess.State extends Chess.Board
       t = if (k < 0) then 0 else 119
       for sq in [(base_sq+k)..t] by k
         break if @square_off_board(sq)
-        console.log @turn()
         break if @sq_is_color(sq, @turn())
         arr.push sq
         break if @sq_is_opp_color(sq, @turn())
@@ -95,9 +94,10 @@ class Chess.State extends Chess.Board
   jump_moves: (base_sq, vectors)->
     arr = []
     for k in vectors
-      arr.push (base_sq + k) unless @square_off_board(base_sq+k)
-    return arr    
-    
+      t = base_sq + k
+      unless @square_off_board(t) || @sq_is_color(t, @turn())
+        arr.push t
+    return arr        
 
   bishop_moves: (base_sq)->
     @sliding_moves(base_sq, [15, 17, -15, -17])
