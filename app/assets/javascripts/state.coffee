@@ -153,9 +153,29 @@ class Chess.State extends Chess.Board
       moves.push base_sq - 32
     return moves
 
-  
+  moves_for_sq: (sq)->
+    piece = @board[sq] & ~(1<<3)
+    return @pawn_moves(sq)    if piece == Chess.Pieces.PAWN
+    return @rook_moves(sq)    if piece == Chess.Pieces.ROOK
+    return @knight_moves(sq)  if piece == Chess.Pieces.KNIGHT
+    return @bishop_moves(sq)  if piece == Chess.Pieces.BISHOP
+    return @queen_moves(sq)   if piece == Chess.Pieces.QUEEN
+    return @king_moves(sq)    if piece == Chess.Pieces.KING
+    throw "moves_for_sq: piece error"
     
-        
+    
+    
+           
+  
+  generate_moves: ->
+    moves = {}
+    for r in [0..7] 
+      for c in [0..7]
+        sq = r*16 + c
+        if @sq_is_color(sq, @turn())
+          moves[sq] = @moves_for_sq(sq)
+    return moves
+            
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
     for j in @pawn_moves(base_sq)

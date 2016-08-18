@@ -15,9 +15,17 @@
 # D 0x1101 QUEEN
 # E 0x1110 KING
 
+# Note, we define pieces generically for convience in code where
+# we are not talking about a specific piece but that class of pieces.
 
 Chess.Pieces = {
   EMPTY:         0,
+  PAWN:          1,
+  ROOK:          2,
+  KNIGHT:        3,
+  BISHOP:        4, 
+  QUEEN:         5,
+  KING:          6,
   WHITE_PAWN:    1,
   WHITE_ROOK:    2,
   WHITE_KNIGHT:  3,
