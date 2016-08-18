@@ -69,7 +69,8 @@ class Chess.State extends Chess.Board
     super()
     @reset_state()
     @view = view
-    @view.set_state(@)
+    unless @view == null
+      @view.set_state(@)
     @dump()
   
   #####
@@ -85,7 +86,10 @@ class Chess.State extends Chess.Board
       t = if (k < 0) then 0 else 119
       for sq in [(base_sq+k)..t] by k
         break if @square_off_board(sq)
+        console.log @turn()
+        break if @sq_is_color(sq, @turn())
         arr.push sq
+        break if @sq_is_opp_color(sq, @turn())
     return arr    
 
   jump_moves: (base_sq, vectors)->
