@@ -1,10 +1,18 @@
 describe "king moves", ->
-  it "should know the moves in an empty board", ->
+  it "should know the moves in the middle of an empty board", ->
     s = new Chess.State(null)
     s.clear_board()
     s.set(67, Chess.Pieces.WHITE_KING)    
     s.dump()
     expect(s.king_moves(67)).toEqual([ 68, 66, 82, 83, 84, 52, 51, 50])
+
+  it "should know the moves in the corner of an empty board", ->
+    s = new Chess.State(null)
+    s.clear_board()
+    s.set(0, Chess.Pieces.WHITE_KING)    
+    s.dump()
+    expect(s.king_moves(0)).toEqual([1,16,17])
+
 
   it "should know the moves when blocked by own piece", ->
     s = new Chess.State(null)

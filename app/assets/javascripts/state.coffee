@@ -116,36 +116,49 @@ class Chess.State extends Chess.Board
   
   pawn_moves: (base_sq)->
     if @turn() == Chess.Colors.WHITE
-      @white_pawn_moves(base_sq)
       console.log "white pawns"
+      return @white_pawn_moves(base_sq)
+
     else
       console.log "black pawns"
-      @black_pawn_moves(base_sq)
+      return @black_pawn_moves(base_sq)
 
   white_pawn_moves: (base_sq)->
-    moves = @jump_moves(base_sq, [16])
-    if @sq_is_color(base_sq + 15, Chess.Colors.BLACK)
+    moves = []
+    if !@square_off_board(base_sq+16) && @sq_is_empty(base_sq + 16)
+      moves.push base_sq + 16
+  
+    if !@square_off_board(base_sq+15) && @sq_is_color(base_sq + 15, Chess.Colors.BLACK)
       moves.push base_sq + 15
 
-    if @sq_is_color(base_sq + 17, Chess.Colors.BLACK)
+    if !@square_off_board(base_sq+17) && @sq_is_color(base_sq + 17, Chess.Colors.BLACK)
       moves.push base_sq + 17
 
+    if @rank_of_square(base_sq) == 1 && @sq_is_empty(base_sq + 16) && @sq_is_empty(base_sq+32)
+      moves.push base_sq + 32
     return moves
       
   black_pawn_moves: (base_sq)->
-    moves = @jump_moves(base_sq, [-16])
-    if @sq_is_color(base_sq - 15, Chess.Colors.WHITE)
+    moves = []
+    if !@square_off_board(base_sq-16) && @sq_is_empty(base_sq - 16)
+      moves.push base_sq - 16
+  
+    if !@square_off_board(base_sq-15) && @sq_is_color(base_sq - 15, Chess.Colors.WHITE)
       moves.push base_sq - 15
 
-    if @sq_is_color(base_sq - 17, Chess.Colors.WHITE)
+    if !@square_off_board(base_sq-17) && @sq_is_color(base_sq - 17, Chess.Colors.WHITE)
       moves.push base_sq - 17
+
+    if @rank_of_square(base_sq) == 6 && @sq_is_empty(base_sq - 16) && @sq_is_empty(base_sq-32)
+      moves.push base_sq - 32
     return moves
 
   
     
         
-  light_up_moves: (base_sq, fn)->
+  light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
     for j in @pawn_moves(base_sq)
+      console.log j
       $(".square[data-num=#{j}]").css("background-color", "red")
       
