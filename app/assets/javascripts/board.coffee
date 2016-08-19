@@ -10,7 +10,13 @@ class Chess.Board
   clear_board: ->
     for i in [0..127]
       @set(i, 0)
-    
+  
+  square_off_board: (sq)->
+    return sq & 0x88
+  
+  square_on_board: (sq)->
+    return !(sq & 0x88)
+  
   sq_is_opp_color: (pos,color) ->
     return @sq_is_color(pos, Chess.Colors.opp_color(color))
   

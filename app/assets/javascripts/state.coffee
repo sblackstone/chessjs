@@ -76,8 +76,7 @@ class Chess.State extends Chess.Board
   #####
   #####
   
-  square_off_board: (sq)->
-    return sq & 0x88
+
   
   
   sliding_moves: (base_sq, vectors)->
