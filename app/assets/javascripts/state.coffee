@@ -124,13 +124,13 @@ class Chess.State extends Chess.Board
 
   white_pawn_moves: (base_sq)->
     moves = []
-    if !@square_off_board(base_sq + 16) && @sq_is_empty(base_sq + 16)
+    if @square_on_board(base_sq + 16) && @sq_is_empty(base_sq + 16)
       moves.push base_sq + 16
   
-    if !@square_off_board(base_sq + 15) && @sq_is_color(base_sq + 15, Chess.Colors.BLACK)
+    if @square_on_board(base_sq + 15) && @sq_is_color(base_sq + 15, Chess.Colors.BLACK)
       moves.push base_sq + 15
 
-    if !@square_off_board(base_sq + 17) && @sq_is_color(base_sq + 17, Chess.Colors.BLACK)
+    if @square_on_board(base_sq + 17) && @sq_is_color(base_sq + 17, Chess.Colors.BLACK)
       moves.push base_sq + 17
 
     if @rank_of_square(base_sq) == 1 && @sq_is_empty(base_sq + 16) && @sq_is_empty(base_sq + 32)
@@ -139,13 +139,13 @@ class Chess.State extends Chess.Board
       
   black_pawn_moves: (base_sq)->
     moves = []
-    if !@square_off_board(base_sq - 16) && @sq_is_empty(base_sq - 16)
+    if @square_on_board(base_sq - 16) && @sq_is_empty(base_sq - 16)
       moves.push base_sq - 16
   
-    if !@square_off_board(base_sq - 15) && @sq_is_color(base_sq - 15, Chess.Colors.WHITE)
+    if @square_on_board(base_sq - 15) && @sq_is_color(base_sq - 15, Chess.Colors.WHITE)
       moves.push base_sq - 15
 
-    if !@square_off_board(base_sq - 17) && @sq_is_color(base_sq - 17, Chess.Colors.WHITE)
+    if @square_on_board(base_sq - 17) && @sq_is_color(base_sq - 17, Chess.Colors.WHITE)
       moves.push base_sq - 17
 
     if @rank_of_square(base_sq) == 6 && @sq_is_empty(base_sq - 16) && @sq_is_empty(base_sq - 32)
