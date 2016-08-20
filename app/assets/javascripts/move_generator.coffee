@@ -2,7 +2,11 @@ class Chess.MoveGenerator
 
   constructor: ->
     @state = null
-    
+  
+  # This is for testing...
+  set_state: (state)->
+    @state = state
+  
   sliding_moves: (base_sq, vectors)->
     arr = []
     for k in vectors
