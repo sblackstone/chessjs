@@ -70,11 +70,6 @@ class Chess.State extends Chess.Board
     unless @view == null
       @view.set_state(@)
   
-  #####
-  #####
-  
-
-  
   
   sliding_moves: (base_sq, vectors)->
     arr = []
