@@ -3,7 +3,6 @@ describe "bishop moves", ->
     s = new Chess.State(null)
     s.clear_board()
     s.set(67, Chess.Pieces.WHITE_BISHOP)    
-    s.dump()
     expect(s.bishop_moves(67)).toEqual(  [ 82, 97, 112, 84, 101, 118, 52, 37, 22, 7, 50, 33, 16 ])
 
   it "should know the moves when blocked by own piece", ->
@@ -12,7 +11,6 @@ describe "bishop moves", ->
     s.set_turn(Chess.Colors.WHITE)
     s.set(67, Chess.Pieces.WHITE_BISHOP)   
     s.set(50, Chess.Pieces.WHITE_PAWN) 
-    s.dump()
     expect(s.bishop_moves(67)).toEqual( [ 82, 97, 112, 84, 101, 118, 52, 37, 22, 7 ])
 
   it "should know the moves when blocked by opponent piece", ->
@@ -21,5 +19,4 @@ describe "bishop moves", ->
     s.set_turn(Chess.Colors.WHITE)
     s.set(67, Chess.Pieces.WHITE_BISHOP)   
     s.set(50, Chess.Pieces.BLACK_BISHOP) 
-    s.dump()
     expect(s.bishop_moves(67)).toEqual( [ 82, 97, 112, 84, 101, 118, 52, 37, 22, 7, 50 ])

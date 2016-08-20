@@ -1,7 +1,6 @@
 class Chess.Board
   
   constructor: ->
-    console.log "board: construct"
     @board = []
     window.board = @ # debugging.
     @clear_board()

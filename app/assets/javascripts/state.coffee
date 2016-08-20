@@ -54,7 +54,6 @@ class Chess.State extends Chess.Board
 
     
   reset_state: ->
-    console.log "state: reset state"
     @set_turn(Chess.Colors.WHITE)
     @set_castle_bk 1
     @set_castle_bq 1
@@ -64,14 +63,12 @@ class Chess.State extends Chess.Board
 
   
   constructor: (view)->
-    window.state = @
-    console.log "state: construct"
+    window.state = @    
     super()
     @reset_state()
     @view = view
     unless @view == null
       @view.set_state(@)
-    @dump()
   
   #####
   #####
