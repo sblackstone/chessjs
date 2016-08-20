@@ -42,12 +42,9 @@ class Chess.MoveGenerator
     @jump_moves(base_sq, [1, -1, 15, 16, 17, -15, -16, -17])
   
   pawn_moves: (base_sq)->
-    if @state.turn() == Chess.Colors.WHITE
-      console.log "white pawns"
+    if @state.sq_is_color(base_sq, Chess.Colors.WHITE)
       return @white_pawn_moves(base_sq)
-
     else
-      console.log "black pawns"
       return @black_pawn_moves(base_sq)
 
   white_pawn_moves: (base_sq)->
