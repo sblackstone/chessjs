@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$SQUARE_HEIGHT: 80px;
+$SQUARE_HEIGHT: 100px;
 
 body { margin: 0; background: #333; }
 
@@ -35,26 +35,25 @@ body { margin: 0; background: #333; }
 }
 
 .piece {
-  height: 70px;
-  width: 70px;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  line-height: $SQUARE_HEIGHT;
-  margin: 0 auto;
+  height: 90%;
+  width: 90%;
+  top: 5%;
+  left: 5%;
+  position: absolute;
+  background-color: transparent !important;
   background-position: center center;
   background-size: cover;
 }
 
 .row:nth-child(2n+1) {
   .square:nth-child(2n) {
-    background: green;
+    background-color: green;
   };
 };
 
 .row:nth-child(2n) {
   .square:nth-child(2n+1) {
-    background: green;
+    background-color: green;
   };
 };
 
