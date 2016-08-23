@@ -93,19 +93,19 @@ class Chess.Board
   
   piece_to_str: (p)->
     switch p
-      when Chess.Pieces.EMPTY        then "EE"
-      when Chess.Pieces.WHITE_PAWN   then "WP"
-      when Chess.Pieces.WHITE_ROOK   then "WR"
-      when Chess.Pieces.WHITE_KNIGHT then "WN"
-      when Chess.Pieces.WHITE_BISHOP then "WB"
-      when Chess.Pieces.WHITE_KING   then "WK"
-      when Chess.Pieces.WHITE_QUEEN  then "WQ"
-      when Chess.Pieces.BLACK_PAWN   then "BP"
-      when Chess.Pieces.BLACK_ROOK   then "BR"
-      when Chess.Pieces.BLACK_KNIGHT then "BN"
-      when Chess.Pieces.BLACK_BISHOP then "BB"
-      when Chess.Pieces.BLACK_KING   then "BK"
-      when Chess.Pieces.BLACK_QUEEN  then "BQ"
+      when Chess.Pieces.EMPTY        then "ee"
+      when Chess.Pieces.WHITE_PAWN   then "wp"
+      when Chess.Pieces.WHITE_ROOK   then "wr"
+      when Chess.Pieces.WHITE_KNIGHT then "wn"
+      when Chess.Pieces.WHITE_BISHOP then "wb"
+      when Chess.Pieces.WHITE_KING   then "wk"
+      when Chess.Pieces.WHITE_QUEEN  then "wq"
+      when Chess.Pieces.BLACK_PAWN   then "bp"
+      when Chess.Pieces.BLACK_ROOK   then "br"
+      when Chess.Pieces.BLACK_KNIGHT then "bn"
+      when Chess.Pieces.BLACK_BISHOP then "bb"
+      when Chess.Pieces.BLACK_KING   then "bk"
+      when Chess.Pieces.BLACK_QUEEN  then "bq"
       else "QQ"
     
   dump: ->
