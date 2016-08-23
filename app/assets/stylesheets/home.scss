@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$SQUARE_HEIGHT: 76px;
+$SQUARE_HEIGHT: 80px;
 
 body { margin: 0; background: #333; }
 
@@ -35,13 +35,15 @@ body { margin: 0; background: #333; }
 }
 
 .piece {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
   text-align: center;
   display: inline-block;
   width: 100%;
   line-height: $SQUARE_HEIGHT;
   margin: 0 auto;
+  background-position: center center;
+  background-size: cover;
 }
 
 .row:nth-child(2n+1) {
@@ -57,49 +59,49 @@ body { margin: 0; background: #333; }
 };
 
 .bp {
-  background: asset-url('bp.svg') top left no-repeat;
+  background-image: asset-url('bp.svg');
 }
 
 .br {
-  background: asset-url('br.svg') top left no-repeat;
+  background-image: asset-url('br.svg');
 }
 
 .bn {
-  background: asset-url('bn.svg') top left no-repeat;
+  background-image: asset-url('bn.svg');
 }
 
 .bb {
-  background: asset-url('bb.svg') top left no-repeat;
+  background-image: asset-url('bb.svg');
 }
 
 .bq {
-  background: asset-url('bq.svg') top left no-repeat;
+  background-image: asset-url('bq.svg');
 }
 
 .bk {
-  background: asset-url('bk.svg') top left no-repeat;
+  background-image: asset-url('bk.svg');
 }
 
 .wp {
-  background: asset-url('wp.svg') top left no-repeat;
+  background-image: asset-url('wp.svg');
 }
 
 .wr {
-  background: asset-url('wr.svg') top left no-repeat;
+  background-image: asset-url('wr.svg');
 }
 
 .wn {
-  background: asset-url('wn.svg') top left no-repeat;
+  background-image: asset-url('wn.svg');
 }
 
 .wb {
-  background: asset-url('wb.svg') top left no-repeat;
+  background-image: asset-url('wb.svg');
 }
 
 .wq {
-  background: asset-url('wq.svg') top left no-repeat;
+  background-image: asset-url('wq.svg');
 }
 
 .wk {
-  background: asset-url('wk.svg') top left no-repeat;
+  background-image: asset-url('wk.svg');
 }
