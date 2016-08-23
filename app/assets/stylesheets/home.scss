@@ -35,7 +35,8 @@ body { margin: 0; background: #333; }
 }
 
 .piece {
-  font-size: 30px;
+  height: 50px;
+  width: 50px;
   text-align: center;
   display: inline-block;
   width: 100%;
@@ -54,3 +55,51 @@ body { margin: 0; background: #333; }
     background: green;
   };
 };
+
+.BP {
+  background: asset-url('bp.svg') top left no-repeat;
+}
+
+.BR {
+  background: asset-url('br.svg') top left no-repeat;
+}
+
+.BN {
+  background: asset-url('bn.svg') top left no-repeat;
+}
+
+.BB {
+  background: asset-url('bb.svg') top left no-repeat;
+}
+
+.BQ {
+  background: asset-url('bq.svg') top left no-repeat;
+}
+
+.BK {
+  background: asset-url('bk.svg') top left no-repeat;
+}
+
+.WP {
+  background: asset-url('wp.svg') top left no-repeat;
+}
+
+.WR {
+  background: asset-url('wr.svg') top left no-repeat;
+}
+
+.WN {
+  background: asset-url('wn.svg') top left no-repeat;
+}
+
+.WB {
+  background: asset-url('wb.svg') top left no-repeat;
+}
+
+.WQ {
+  background: asset-url('wq.svg') top left no-repeat;
+}
+
+.WK {
+  background: asset-url('wk.svg') top left no-repeat;
+}
