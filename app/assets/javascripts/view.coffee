@@ -1,25 +1,21 @@
 class Chess.View
 
-  set_state: (state)->
+  constructor: (state)->
     @state = state
     @draw()
-      
+    $(document).on "draw-board", => 
+      @draw()
+
   draw: ->
-    console.log "view: draw"
+    console.log "view: draw"    
+    $('.cover').remove()
     for sq in $('.square')
       s = @state.str_at($(sq).data("num"))
-      $(sq).find('.piece').removeClass().addClass("piece").addClass(s)
-      s = "" if s == "EE"
+      $(sq).find('.piece').removeClass().addClass("piece").addClass(s).data("piece", s)
 
 
-window.blarg = (pos)->
-  $(".square[data-num='#{pos}']").append($("<div class='cover'></div>"))
+  cover_square: (pos)->
+    $(".square[data-num='#{pos}']").append($("<div class='cover'></div>"))
 
 
-ready = ->
-  $(document).on "dragstart", ".piece", (e)->
-    window.crap = e
-    e.originalEvent.dataTransfer.effectAllowed = 'move'
     
-    
-$(document).on "turbolinks:load", ready

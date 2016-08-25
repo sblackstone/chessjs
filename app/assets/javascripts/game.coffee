@@ -5,8 +5,8 @@
 
 ready = ->
   console.log "game: ready"
-  window.view       = new Chess.View()
-  window.state      = new Chess.State(view)    
-  window.controller = new Chess.Controller(state)
+  window.state      = new Chess.State()    
+  window.view       = new Chess.View(state)
+  window.controller = new Chess.Controller(state, view)
   
 $(document).on "turbolinks:load", ready

@@ -65,15 +65,10 @@ class Chess.State extends Chess.Board
     super()
     @reset_state()
   
-  constructor: (view)->
+  constructor: ()->
     window.state = @    
     super()
-    @reset_state()
-    @view = view
-    unless @view == null
-      @view.set_state(@)
-  
-  
+    @reset_state()  
             
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
