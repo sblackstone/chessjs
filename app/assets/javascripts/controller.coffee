@@ -9,17 +9,23 @@ class Chess.Controller
     console.log "controller: setup_listeners"
      
     $(document).on "dragstart", ".piece", (e) =>
-      e.originalEvent.dataTransfer.effectAllowed = "move"
-      window.crap = e
       orig_num = e.target.parentElement.dataset["num"]
       piece    = $(e.target).data("piece")
-      i = new Image()
-      i.width = 70
-      i.height = 70
-      piece = "wq"
-      i.src = "/pieces/#{piece}.svg"
-      e.originalEvent.dataTransfer.setDragImage(i, 0,0)
+      console.log orig_num
+      e.originalEvent.dataTransfer.setData("text/plain", orig_num)
+      window.stuff = e
       #@view.cover_square(orig_num)
-
-      window.crap = e
       console.log "whee"
+
+    $(document).on "dragover", ".square", (e)=>
+      console.log "dragover a square"
+      e.preventDefault()
+
+    $(document).on "drop", ".square", (e)=>
+      e.preventDefault()
+      orig_num =  e.originalEvent.dataTransfer.getData("text/plain")
+      target_num = e.target.parentElement.dataset["num"]
+
+      @state.make_human_move(orig_num, target_num)
+      console.log "Move #{orig_num} to #{target_num}"
+      console.log("drop")

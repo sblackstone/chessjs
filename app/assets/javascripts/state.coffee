@@ -69,7 +69,13 @@ class Chess.State extends Chess.Board
     window.state = @    
     super()
     @reset_state()  
-            
+
+  make_human_move: (src, dst)->
+    @set dst, @at src
+    @set src, Chess.Pieces.EMPTY
+    $(document).trigger("draw-board")
+    
+    
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
     for j in @moves_for_sq(base_sq)
