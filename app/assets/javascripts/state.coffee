@@ -1,11 +1,15 @@
 class Chess.State extends Chess.Board
-  SQ_TURN      = 120
-  SQ_CASTLE_BK = 121
-  SQ_CASTLE_BQ = 122
-  SQ_CASTLE_WK = 123
-  SQ_CASTLE_WQ = 124
-  SQ_ENPASSANT = 125
+  SQ_TURN        = 120
+  SQ_CASTLE_BK   = 121
+  SQ_CASTLE_BQ   = 122
+  SQ_CASTLE_WK   = 123
+  SQ_CASTLE_WQ   = 124
+  SQ_ENPASSANT   = 125
+  SQ_HUMAN_COLOR = 126
   
+  set_human_color: (val)->
+    @board[SQ_HUMAN_COLOR] = val
+          
   set_turn: (val)->
     @board[SQ_TURN] = val
 
@@ -24,7 +28,9 @@ class Chess.State extends Chess.Board
   set_enpassant: (val)->
     @board[SQ_ENPASSANT] = val
   
-  
+  human_color: ->
+    @board[SQ_HUMAN_COLOR]
+    
   turn: ->
     @board[SQ_TURN]
     
@@ -73,8 +79,28 @@ class Chess.State extends Chess.Board
   make_human_move: (src, dst)->
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
+    @set_turn Chess.Colors.opp_color(@turn())
+    @make_computer_move()
     $(document).trigger("draw-board")
-    
+  
+  make_computer_move: ->
+    console.log "computer move time"
+    $(document).trigger("draw-board")
+    mv = new Chess.MoveGenerator()
+    moves = mv.generate_moves(@)
+    window.moves = moves
+    keys = Object.keys(moves)
+    window.keys = keys
+    src = parseInt(keys[Math.floor(Math.random() * keys.length)])
+    window.src = src
+    window.crap = moves[src]
+    dst = moves[src][Math.floor(Math.random() * moves[src].length)]
+    window.dst = dst
+    @set dst, @at src
+    @set src, Chess.Pieces.EMPTY
+    @set_turn Chess.Colors.opp_color(@turn())
+    $(document).trigger("draw-board")
+
     
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")

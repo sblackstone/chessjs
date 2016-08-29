@@ -5,7 +5,7 @@ class Chess.View
     @draw()
     $(document).on "draw-board", => 
       @draw()
-
+    
   draw: ->
     console.log "view: draw"    
     $('.cover').remove()
@@ -18,4 +18,3 @@ class Chess.View
     $(".square[data-num='#{pos}']").append($("<div class='cover'></div>"))
 
 
-    
