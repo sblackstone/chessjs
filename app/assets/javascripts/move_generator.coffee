@@ -1,7 +1,7 @@
 class Chess.MoveGenerator
 
   constructor: (state = null)->
-    @state = null
+    @state = state
   
   set_state: (state)->
     @state = state
@@ -86,8 +86,7 @@ class Chess.MoveGenerator
     return @king_moves(sq)    if piece == Chess.Pieces.KING
     throw "moves_for_sq: piece error"
               
-  generate_moves: (state, color = @state.turn())->
-    @state = state
+  generate_moves: (color = @state.turn())->
     moves = {}
     for r in [0..7] 
       for c in [0..7]

@@ -13,4 +13,3 @@ describe "Board", ->
       s.set(67, Chess.Pieces.EMPTY)        
       expect(s.sq_is_color(67, Chess.Colors.WHITE)).toBe(false)
       expect(s.sq_is_color(67, Chess.Colors.BLACK)).toBe(false)
-      

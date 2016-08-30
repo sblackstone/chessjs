@@ -49,6 +49,20 @@ class Chess.State extends Chess.Board
   enpassant: ->
     @board[SQ_ENPASSANT]    
 
+  sq_under_attack: (sq)->
+    cur_color = @square_color(sq)
+    mv = new Chess.MoveGenerator(@)
+    return false if cur_color == Chess.Colors.EMPTY
+    for r in [0..7]  
+      for c in [0..7]
+        pos = @rc_to_pos(r,c)
+        if @sq_is_opp_color(pos, cur_color)
+          console.log(pos)
+          moves = mv.moves_for_sq(pos)
+          if moves.indexOf(sq) > -1
+            return true
+    return false  
+
   dump: ->
     super()
     console.log "Turn: #{@turn()}"
@@ -81,8 +95,8 @@ class Chess.State extends Chess.Board
     @set src, Chess.Pieces.EMPTY
 
   make_human_move: (src, dst)->
-    mv = new Chess.MoveGenerator()
-    moves = mv.generate_moves(@)
+    mv = new Chess.MoveGenerator(@)
+    moves = mv.generate_moves()
     console.log "possibles:"
     console.log moves[src]    
     

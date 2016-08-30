@@ -13,6 +13,12 @@ class Chess.Board
   square_off_board: (sq)->
     return sq & 0x88
   
+  square_color: (pos)->
+    return Chess.Colors.EMPTY if @sq_is_empty(pos)
+    return Chess.Colors.WHITE if @board[pos] > 0 && (@board[pos] & 0b1000) == 0
+    return Chess.Colors.BLACK
+    
+  
   square_on_board: (sq)->
     return !(sq & 0x88)
   
@@ -23,12 +29,7 @@ class Chess.Board
     @board[pos] == Chess.Pieces.EMPTY
     
   sq_is_color: (pos, color)->
-    if color == Chess.Colors.WHITE
-      return @board[pos] > 0 && (@board[pos] & 0b1000) == 0
-    else if color == Chess.Colors.BLACK
-       return (@board[pos] & 0b1000) > 0
-    else
-      return false
+    return @square_color(pos) == color
  
   set_initial_board: ->
     @set 0, Chess.Pieces.WHITE_ROOK
