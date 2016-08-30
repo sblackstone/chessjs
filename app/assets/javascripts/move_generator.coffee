@@ -86,13 +86,13 @@ class Chess.MoveGenerator
     return @king_moves(sq)    if piece == Chess.Pieces.KING
     throw "moves_for_sq: piece error"
               
-  generate_moves: (state)->
+  generate_moves: (state, color = @state.turn())->
     @state = state
     moves = {}
     for r in [0..7] 
       for c in [0..7]
         sq = r*16 + c
-        if @state.sq_is_color(sq, @state.turn())
+        if @state.sq_is_color(sq, color)
           m = @moves_for_sq(sq)
           moves[sq] = m unless m.length == 0
     return moves
