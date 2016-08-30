@@ -1,9 +1,8 @@
 class Chess.MoveGenerator
 
-  constructor: ->
+  constructor: (state = null)->
     @state = null
   
-  # This is for testing...
   set_state: (state)->
     @state = state
   
