@@ -76,6 +76,10 @@ class Chess.State extends Chess.Board
     super()
     @reset_state()  
 
+  make_move: (src,dst)->
+    @set dst, @at src
+    @set src, Chess.Pieces.EMPTY
+
   make_human_move: (src, dst)->
     mv = new Chess.MoveGenerator()
     moves = mv.generate_moves(@)
@@ -86,8 +90,8 @@ class Chess.State extends Chess.Board
       console.log "bad move"
       return
           
-    @set dst, @at src
-    @set src, Chess.Pieces.EMPTY
+    @make_move(src, dst)
+
     @set_turn Chess.Colors.opp_color(@turn())
     @make_computer_move()
     $(document).trigger("draw-board")
@@ -105,8 +109,7 @@ class Chess.State extends Chess.Board
     window.crap = moves[src]
     dst = moves[src][Math.floor(Math.random() * moves[src].length)]
     window.dst = dst
-    @set dst, @at src
-    @set src, Chess.Pieces.EMPTY
+    @make_move(src, dst)
     @set_turn Chess.Colors.opp_color(@turn())
     $(document).trigger("draw-board")
 
