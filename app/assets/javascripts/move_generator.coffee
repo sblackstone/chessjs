@@ -94,6 +94,7 @@ class Chess.MoveGenerator
       for c in [0..7]
         sq = r*16 + c
         if @state.sq_is_color(sq, @state.turn())
-          moves[sq] = @moves_for_sq(sq)
+          m = @moves_for_sq(sq)
+          moves[sq] = m unless m.length == 0
     return moves
   
