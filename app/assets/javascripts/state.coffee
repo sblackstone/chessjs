@@ -77,6 +77,15 @@ class Chess.State extends Chess.Board
     @reset_state()  
 
   make_human_move: (src, dst)->
+    mv = new Chess.MoveGenerator()
+    moves = mv.generate_moves(@)
+    console.log "possibles:"
+    console.log moves[src]    
+    
+    if moves[src].indexOf(parseInt(dst)) == -1
+      console.log "bad move"
+      return
+          
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
     @set_turn Chess.Colors.opp_color(@turn())
