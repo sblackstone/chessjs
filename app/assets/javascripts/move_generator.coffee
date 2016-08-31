@@ -84,7 +84,7 @@ class Chess.MoveGenerator
     return @bishop_moves(sq)  if piece == Chess.Pieces.BISHOP
     return @queen_moves(sq)   if piece == Chess.Pieces.QUEEN
     return @king_moves(sq)    if piece == Chess.Pieces.KING
-    throw "moves_for_sq: piece error"
+    throw new Error("moves_for_sq: piece error")
               
   generate_moves: (color = @state.turn())->
     moves = {}
