@@ -49,14 +49,14 @@ class Chess.State extends Chess.Board
   enpassant: ->
     @board[SQ_ENPASSANT]    
 
-  sq_under_attack: (sq)->
+  square_under_attack: (sq)->
     cur_color = @square_color(sq)
     mv = new Chess.MoveGenerator(@)
     return false if cur_color == Chess.Colors.EMPTY
     for r in [0..7]  
       for c in [0..7]
         pos = @rc_to_pos(r,c)
-        if @sq_is_opp_color(pos, cur_color)
+        if @square_is_opp_color(pos, cur_color)
           console.log(pos)
           moves = mv.moves_for_sq(pos)
           if moves.indexOf(sq) > -1
@@ -93,7 +93,7 @@ class Chess.State extends Chess.Board
 
   make_human_move: (src, dst)->
     mv = new Chess.MoveGenerator(@)
-    moves = mv.generate_moves()
+    moves = mv.generate_moves(@human_color())
     console.log "possibles:"
     console.log moves[src]    
     
@@ -110,8 +110,8 @@ class Chess.State extends Chess.Board
   make_computer_move: ->
     console.log "computer move time"
     $(document).trigger("draw-board")
-    mv = new Chess.MoveGenerator()
-    moves = mv.generate_moves(@)
+    mv = new Chess.MoveGenerator(@)
+    moves = mv.generate_moves(@turn())
     window.moves = moves
     keys = Object.keys(moves)
     window.keys = keys
