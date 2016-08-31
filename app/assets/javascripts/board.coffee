@@ -3,19 +3,22 @@ class Chess.Board
   constructor: ->
     @board = []
     window.board = @ # debugging.
-    @clear_board()
-    @set_initial_board()
 
   clear_board: ->
-    for i in [0..127]
-      @set(i, 0)
+    for r in [0..7]
+      for c in [0..7]
+        @set_rc r,c,Chess.Pieces.EMPTY
+  
+  reset_state: ->
+    @clear_board()
+    @set_initial_board()
   
   square_off_board: (sq)->
     return sq & 0x88
   
   square_color: (pos)->
     return Chess.Colors.EMPTY if @sq_is_empty(pos)
-    return Chess.Colors.WHITE if @board[pos] > 0 && (@board[pos] & 0b1000) == 0
+    return Chess.Colors.WHITE if @board[pos] > 0 && @board[pos] < 8
     return Chess.Colors.BLACK
     
   

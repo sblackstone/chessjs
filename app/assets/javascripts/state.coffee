@@ -80,10 +80,7 @@ class Chess.State extends Chess.Board
     @set_castle_wk 1
     @set_castle_wq 1
     @set_enpassant 0
-
-  clear_board: ->
     super()
-    @reset_state()
   
   constructor: ()->
     window.state = @    

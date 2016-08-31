@@ -33,11 +33,11 @@ Chess.Pieces = {
   WHITE_QUEEN:   5,
   WHITE_KING:    6,
   BLACK_PAWN:    9,
-  BLACK_ROOK:   0xA,
-  BLACK_KNIGHT: 0xB,
-  BLACK_BISHOP: 0xC,
-  BLACK_QUEEN:  0xD,
-  BLACK_KING:   0xE,
+  BLACK_ROOK:   10,
+  BLACK_KNIGHT: 11,
+  BLACK_BISHOP: 12,
+  BLACK_QUEEN:  13,
+  BLACK_KING:   14,
   
 }
   
