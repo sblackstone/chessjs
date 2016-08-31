@@ -15,5 +15,7 @@
 //= require three.min
 //= require pre_init
 //= require turbolinks
+//= require board
+//= require state
 //= require_tree .
 

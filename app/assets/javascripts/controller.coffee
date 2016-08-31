@@ -29,3 +29,5 @@ class Chess.Controller
       @state.make_human_move(orig_num, target_num)
       console.log "Move #{orig_num} to #{target_num}"
       console.log("drop")
+
+
