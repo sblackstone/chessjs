@@ -51,10 +51,10 @@ class Chess.MoveGenerator
     if @state.square_on_board(base_sq + 16) && @state.square_is_empty(base_sq + 16)
       moves.push base_sq + 16
   
-    if @state.square_on_board(base_sq + 15) && @state.square_is_color(base_sq + 15, Chess.Colors.BLACK)
+    if @state.square_on_board(base_sq + 15) && (@state.square_is_color(base_sq + 15, Chess.Colors.BLACK) || @state.enpassant() == (base_sq + 15))
       moves.push base_sq + 15
 
-    if @state.square_on_board(base_sq + 17) && @state.square_is_color(base_sq + 17, Chess.Colors.BLACK)
+    if @state.square_on_board(base_sq + 17) && (@state.square_is_color(base_sq + 17, Chess.Colors.BLACK) || @state.enpassant() == (base_sq + 17))
       moves.push base_sq + 17
 
     if @state.rank_of_square(base_sq) == 1 && @state.square_is_empty(base_sq + 16) && @state.square_is_empty(base_sq + 32)
@@ -66,10 +66,10 @@ class Chess.MoveGenerator
     if @state.square_on_board(base_sq - 16) && @state.square_is_empty(base_sq - 16)
       moves.push base_sq - 16
   
-    if @state.square_on_board(base_sq - 15) && @state.square_is_color(base_sq - 15, Chess.Colors.WHITE)
+    if @state.square_on_board(base_sq - 15) && (@state.square_is_color(base_sq - 15, Chess.Colors.WHITE) || @state.enpassant() == (base_sq - 15))
       moves.push base_sq - 15
 
-    if @state.square_on_board(base_sq - 17) && @state.square_is_color(base_sq - 17, Chess.Colors.WHITE)
+    if @state.square_on_board(base_sq - 17) && (@state.square_is_color(base_sq - 17, Chess.Colors.WHITE) || @state.enpassant() == (base_sq - 17))
       moves.push base_sq - 17
 
     if @state.rank_of_square(base_sq) == 6 && @state.square_is_empty(base_sq - 16) && @state.square_is_empty(base_sq - 32)

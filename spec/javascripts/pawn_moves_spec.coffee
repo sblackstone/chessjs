@@ -27,6 +27,25 @@ describe "white pawn moves moves", ->
     mg.set_state(s)    
     expect(mg.pawn_moves(17)).toEqual([ 33, 34, 49 ])
 
+
+  it "can take left enpassant", ->
+    s = new Chess.Game()
+    mg = new Chess.MoveGenerator(s)    
+    s.set(66, Chess.Pieces.WHITE_PAWN)
+    s.dump()
+    s.make_move(99, 67)
+    s.dump()    
+    expect(mg.pawn_moves(66)).toEqual([ 82, 83])
+
+  it "can take right enpassant", ->
+    s = new Chess.Game()
+    mg = new Chess.MoveGenerator(s)    
+    s.set(68, Chess.Pieces.WHITE_PAWN)
+    s.dump()
+    s.make_move(99, 67)
+    s.dump()    
+    expect(mg.pawn_moves(68)).toEqual([ 84, 83])
+
 describe "black pawn moves moves", ->
   it "should know the initial moves", ->
     s = new Chess.State(null)
@@ -60,3 +79,23 @@ describe "black pawn moves moves", ->
     mg = new Chess.MoveGenerator()    
     mg.set_state(s)    
     expect(mg.pawn_moves(97)).toEqual([ 81, 82, 65 ])
+  
+  it "can take left enpassant", ->
+    s = new Chess.Game()
+    mg = new Chess.MoveGenerator(s)    
+    s.set(50, Chess.Pieces.BLACK_PAWN)
+    s.dump()
+    s.make_move(17, 49)
+    s.dump()    
+    expect(mg.pawn_moves(50)).toEqual([ 34, 33 ])
+
+  it "can take right enpassant", ->
+    s = new Chess.Game()
+    mg = new Chess.MoveGenerator(s)    
+    s.set(50, Chess.Pieces.BLACK_PAWN)
+    s.dump()
+    s.make_move(19, 51)
+    s.dump()    
+    expect(mg.pawn_moves(50)).toEqual([ 34, 35])
+  
+    
