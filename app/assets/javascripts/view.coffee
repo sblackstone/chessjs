@@ -1,5 +1,8 @@
 class Chess.View
-
+  
+  @trigger_draw: ->
+    $(document).trigger("draw-board")
+   
   constructor: (state)->
     @state = state
     @draw()

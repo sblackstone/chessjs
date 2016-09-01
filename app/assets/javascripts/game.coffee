@@ -4,9 +4,6 @@ class Chess.Game extends Chess.State
     @move_stack     = []
     @move_generator = new Chess.MoveGenerator(@)
 
-  trigger_draw: ->
-    $(document).trigger("draw-board")
-
   _set_enpassant_from_move: (src,dst) ->
     if @at(src) == Chess.Pieces.WHITE_PAWN && (dst-src) == 32
       @set_enpassant(src + 16)
@@ -46,17 +43,17 @@ class Chess.Game extends Chess.State
 
     @set_turn Chess.Colors.opp_color(@turn())
     @make_computer_move()
-    @trigger_draw()
-  
+    Chess.View.trigger_draw()  
+
   make_computer_move: ->
     console.log "computer move time"
-    @trigger_draw()
     moves = @move_generator.generate_moves(@turn())
     keys = Object.keys(moves)
     src = parseInt(keys[Math.floor(Math.random() * keys.length)])
     dst = moves[src][Math.floor(Math.random() * moves[src].length)]
     @make_move(src, dst)
     @set_turn Chess.Colors.opp_color(@turn())
+    Chess.View.trigger_draw()      
 
     
   light_up_moves: (base_sq)->
