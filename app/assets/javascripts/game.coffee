@@ -12,9 +12,19 @@ class Chess.Game extends Chess.State
     else
       @set_enpassant(-1)
 
+  _handle_enpassant_take: (src, dst)->
+    if @at(src) == Chess.Pieces.WHITE_PAWN && dst == @enpassant()
+      @set dst-16, Chess.Pieces.EMPTY
+
+    if @at(src) == Chess.Pieces.BLACK_PAWN && dst == @enpassant()
+      @set dst+16, Chess.Pieces.EMPTY
+
   make_move: (src,dst)->
     @move_stack.push [src, dst, @at(dst), @export_meta_state()]
+    @_handle_enpassant_take(src,dst)
+
     @_set_enpassant_from_move(src, dst)
+
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
  
@@ -55,6 +65,25 @@ class Chess.Game extends Chess.State
     @set_turn Chess.Colors.opp_color(@turn())
     Chess.View.trigger_draw()      
 
+  run_test: ->
+    @set 68, Chess.Pieces.WHITE_PAWN
+    @set_turn Chess.Colors.BLACK
+    @make_move 99, 67
+    Chess.View.trigger_draw()
+    @set_turn Chess.Colors.WHITE
+    console.log "ENP = #{@enpassant()}"
+    @make_move 68, 83    
+    Chess.View.trigger_draw()
+
+  run_test2: ->
+    @set 50, Chess.Pieces.BLACK_PAWN
+    @set_turn Chess.Colors.WHITE
+    @make_move 19, 51
+    Chess.View.trigger_draw()
+    @set_turn Chess.Colors.BLACK
+    console.log "ENP = #{@enpassant()}"
+    @make_move 50, 35    
+    Chess.View.trigger_draw()
     
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
