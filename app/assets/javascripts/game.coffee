@@ -7,9 +7,18 @@ class Chess.Game extends Chess.State
   trigger_draw: ->
     $(document).trigger("draw-board")
 
+  _set_enpassant_from_move: (src,dst) ->
+    if @at(src) == Chess.Pieces.WHITE_PAWN && (dst-src) == 32
+      @set_enpassant(src + 16)
+    else if @at(src) == Chess.Pieces.BLACK_PAWN && (dst-src) == -32
+      @set_enpassant(src - 16)
+    else
+      @set_enpassant(-1)
+
   make_move: (src,dst)->
     @move_stack.push [src, dst, @at(dst), @export_meta_state()]
-    console.log @move_stack
+    @_set_enpassant_from_move(src, dst)
+    console.log "ENPASSANT = #{@enpassant()}"
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
  
@@ -23,6 +32,8 @@ class Chess.Game extends Chess.State
  
   make_human_move: (src, dst)->
     return if src == dst
+    src = parseInt(src)
+    dst = parseInt(dst)
     moves = @move_generator.generate_moves(@human_color())
     console.log "possibles:"
     console.log moves[src]    
