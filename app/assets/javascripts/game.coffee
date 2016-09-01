@@ -18,7 +18,6 @@ class Chess.Game extends Chess.State
   make_move: (src,dst)->
     @move_stack.push [src, dst, @at(dst), @export_meta_state()]
     @_set_enpassant_from_move(src, dst)
-    console.log "ENPASSANT = #{@enpassant()}"
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
  
