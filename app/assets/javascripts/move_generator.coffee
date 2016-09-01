@@ -77,7 +77,7 @@ class Chess.MoveGenerator
     return moves
 
   moves_for_sq: (sq)->
-    piece = @state.at(sq) & ~(1<<3)
+    piece = @state.generic_piece_at(sq)
     return @pawn_moves(sq)    if piece == Chess.Pieces.PAWN
     return @rook_moves(sq)    if piece == Chess.Pieces.ROOK
     return @knight_moves(sq)  if piece == Chess.Pieces.KNIGHT

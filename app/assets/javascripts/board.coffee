@@ -85,6 +85,8 @@ class Chess.Board
   at: (i)->
     @board[i]
   
+  generic_piece_at: (pos)->
+    @at(pos) & ~(1<<3)
   
   str_at: (i)->
     @piece_to_str @at i

@@ -1,6 +1,24 @@
 describe "Board", ->
   describe "has colored pieces", ->
 
+    it "can figure out the generic piece on a square", ->
+      s = new Chess.State(null)
+      expect(s.generic_piece_at(0)).toEqual(Chess.Pieces.ROOK)      
+      expect(s.generic_piece_at(1)).toEqual(Chess.Pieces.KNIGHT)      
+      expect(s.generic_piece_at(2)).toEqual(Chess.Pieces.BISHOP)      
+      expect(s.generic_piece_at(3)).toEqual(Chess.Pieces.QUEEN)      
+      expect(s.generic_piece_at(4)).toEqual(Chess.Pieces.KING)      
+      expect(s.generic_piece_at(16)).toEqual(Chess.Pieces.PAWN)      
+ 
+
+      expect(s.generic_piece_at(112)).toEqual(Chess.Pieces.ROOK)      
+      expect(s.generic_piece_at(113)).toEqual(Chess.Pieces.KNIGHT)      
+      expect(s.generic_piece_at(114)).toEqual(Chess.Pieces.BISHOP)      
+      expect(s.generic_piece_at(116)).toEqual(Chess.Pieces.QUEEN)      
+      expect(s.generic_piece_at(115)).toEqual(Chess.Pieces.KING)      
+      expect(s.generic_piece_at(96)).toEqual(Chess.Pieces.PAWN)      
+
+
     it "can detect piece colors", ->
       s = new Chess.State(null)
       s.clear_board()
