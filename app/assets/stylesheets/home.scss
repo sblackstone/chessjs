@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$SQUARE_HEIGHT: 100px;
+$SQUARE_HEIGHT: 11vh;
 
 body { margin: 0; background: #333; }
 
 #board {
-  margin: 25px auto;
+  margin: 6vh auto;
   display: block;
   border: 1px solid #000;
   width: $SQUARE_HEIGHT * 8;

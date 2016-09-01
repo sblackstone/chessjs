@@ -6,7 +6,7 @@ class Chess.State extends Chess.Board
   SQ_CASTLE_WQ   = 124
   SQ_ENPASSANT   = 125
   SQ_HUMAN_COLOR = 126
-  
+    
   set_human_color: (val)->
     @board[SQ_HUMAN_COLOR] = val
           
@@ -47,7 +47,19 @@ class Chess.State extends Chess.Board
     @board[SQ_CASTLE_WQ]
 
   enpassant: ->
-    @board[SQ_ENPASSANT]    
+    @board[SQ_ENPASSANT] 
+  
+  export_meta_state: ->
+    [ @turn(), @castle_bk(), @castle_bq(), @castle_wk(), @castle_wq(), @enpassant() ]   
+
+  import_meta_state: (s)->
+    @set_turn      s[0]
+    @set_castle_bk s[1]
+    @set_castle_bq s[2]
+    @set_castle_wk s[3]
+    @set_castle_wq s[4]
+    @set_enpassant s[5]
+    
 
   square_under_attack: (sq)->
     cur_color = @square_color(sq)
