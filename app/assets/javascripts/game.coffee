@@ -19,6 +19,11 @@ class Chess.Game extends Chess.State
     if @at(src) == Chess.Pieces.BLACK_PAWN && dst == @enpassant()
       @set dst+16, Chess.Pieces.EMPTY
 
+  # s[0] = Src Square
+  # s[1] = Dst Square
+  # s[2] = Taken Piece
+  # s[4] = Meta state (Array)
+
   make_move: (src,dst)->
     @move_stack.push [src, dst, @at(dst), @export_meta_state()]
     @_handle_enpassant_take(src,dst)
@@ -31,12 +36,24 @@ class Chess.Game extends Chess.State
   unmake_move: ->
     # TODO: PUT ENPASSANT PIECE BACK
     s = @move_stack.pop()
-    src = s[0]
-    dst = s[1]
-    @set src, @at dst
-    @set dst, s[2]
-    @import_meta_state s[3]
- 
+    src         = s[0]
+    dst         = s[1]
+    taken_piece = s[2]
+    meta_state  = s[3]
+    moved_piece = @at dst
+    diff        = dst - src
+    @set src, moved_piece
+    @set dst, taken_piece
+    @import_meta_state meta_state
+
+    # Unmake Enpassant gets a little tricky...
+    if (moved_piece == Chess.Pieces.WHITE_PAWN) && (diff == 15 || diff == 17) and (taken_piece == Chess.Pieces.EMPTY)
+      @set dst-16, Chess.Pieces.BLACK_PAWN
+
+    if (moved_piece == Chess.Pieces.BLACK_PAWN) && (diff == -15 || diff == -17) and (taken_piece == Chess.Pieces.EMPTY)
+      @set dst+16, Chess.Pieces.WHITE_PAWN
+
+
   make_human_move: (src, dst)->
     return if src == dst
     src = parseInt(src)
@@ -66,24 +83,19 @@ class Chess.Game extends Chess.State
     Chess.View.trigger_draw()      
 
   run_test: ->
-    @set 68, Chess.Pieces.WHITE_PAWN
-    @set_turn Chess.Colors.BLACK
-    @make_move 99, 67
-    Chess.View.trigger_draw()
-    @set_turn Chess.Colors.WHITE
-    console.log "ENP = #{@enpassant()}"
-    @make_move 68, 83    
-    Chess.View.trigger_draw()
+    setInterval Chess.View.trigger_draw, 1000
+    @make_move(16, 64)
+    @make_move(97, 65)
+    @make_move(64, 81)
+    @unmake_move()
 
   run_test2: ->
-    @set 50, Chess.Pieces.BLACK_PAWN
-    @set_turn Chess.Colors.WHITE
-    @make_move 19, 51
-    Chess.View.trigger_draw()
-    @set_turn Chess.Colors.BLACK
-    console.log "ENP = #{@enpassant()}"
-    @make_move 50, 35    
-    Chess.View.trigger_draw()
+    setInterval Chess.View.trigger_draw, 1000
+    @make_move(16, 48)    
+    @make_move(99, 51)
+    @make_move(20, 52)
+    @make_move(52, 35)
+    @unmake_move()
     
   light_up_moves: (base_sq)->
     $(".square[data-num=#{base_sq}]").css("background-color", "blue")
