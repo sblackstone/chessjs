@@ -34,8 +34,7 @@ class Chess.Game extends Chess.State
     @set src, Chess.Pieces.EMPTY
  
   unmake_move: ->
-    # TODO: PUT ENPASSANT PIECE BACK
-    s = @move_stack.pop()
+    s           = @move_stack.pop()
     src         = s[0]
     dst         = s[1]
     taken_piece = s[2]
