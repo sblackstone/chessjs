@@ -46,3 +46,30 @@ describe "Game", ->
       g.set_turn Chess.Colors.BLACK
       g.make_move 51, 34
       expect(g.at(50)).toEqual(Chess.Pieces.EMPTY)
+      
+
+  describe "can make moves", ->
+    it "knows how to move a piece", ->
+      g = new Chess.Game()
+      g.make_move 16,32
+      expect(g.at(32)).toEqual(Chess.Pieces.WHITE_PAWN)
+      expect(g.at(16)).toEqual(Chess.Pieces.EMPTY)
+
+    it "knows how to take a piece", ->
+      g = new Chess.Game()
+      g.set 33, Chess.Pieces.BLACK_PAWN
+      g.make_move 16, 33
+      expect(g.at(16)).toEqual(Chess.Pieces.EMPTY)
+      expect(g.at(33)).toEqual(Chess.Pieces.WHITE_PAWN)
+      
+
+  describe "can unmake moves", ->
+    it "knows how to un-make a move without a take", ->
+      g = new Chess.Game()
+      g.make_move 16, 32
+      expect(g.at(32)).toEqual(Chess.Pieces.WHITE_PAWN)
+      expect(g.at(16)).toEqual(Chess.Pieces.EMPTY)
+      g.unmake_move()
+      expect(g.at(32)).toEqual(Chess.Pieces.EMPTY)
+      expect(g.at(16)).toEqual(Chess.Pieces.WHITE_PAWN)
+      
