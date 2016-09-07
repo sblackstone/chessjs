@@ -32,18 +32,18 @@ describe "white pawn moves moves", ->
     s = new Chess.Game()
     mg = new Chess.MoveGenerator(s)    
     s.set(66, Chess.Pieces.WHITE_PAWN)
-    s.dump()
+    
     s.make_move(99, 67)
-    s.dump()    
+        
     expect(mg.pawn_moves(66).sort()).toEqual([ 82, 83])
 
   it "can take right enpassant", ->
     s = new Chess.Game()
     mg = new Chess.MoveGenerator(s)    
     s.set(68, Chess.Pieces.WHITE_PAWN)
-    s.dump()
+    
     s.make_move(99, 67)
-    s.dump()    
+        
     expect(mg.pawn_moves(68).sort()).toEqual([ 83, 84])
 
 describe "black pawn moves moves", ->
@@ -84,18 +84,18 @@ describe "black pawn moves moves", ->
     s = new Chess.Game()
     mg = new Chess.MoveGenerator(s)    
     s.set(50, Chess.Pieces.BLACK_PAWN)
-    s.dump()
+    
     s.make_move(17, 49)
-    s.dump()    
+        
     expect(mg.pawn_moves(50).sort()).toEqual([ 33, 34 ])
 
   it "can take right enpassant", ->
     s = new Chess.Game()
     mg = new Chess.MoveGenerator(s)    
     s.set(50, Chess.Pieces.BLACK_PAWN)
-    s.dump()
+    
     s.make_move(19, 51)
-    s.dump()    
+        
     expect(mg.pawn_moves(50).sort()).toEqual([ 34, 35])
   
     
