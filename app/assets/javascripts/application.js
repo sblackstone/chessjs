@@ -17,5 +17,8 @@
 //= require turbolinks
 //= require board
 //= require state
+//= require attack_generator
+//= require pseudo_move_generator
+//= require move_generator
 //= require_tree .
 
