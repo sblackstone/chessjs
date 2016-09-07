@@ -61,15 +61,12 @@ class Chess.State extends Chess.Board
     @set_enpassant s[5]
     
 
-  square_under_attack: (sq)->
-    cur_color = @square_color(sq)
-    mv = new Chess.MoveGenerator(@)
-    return false if cur_color == Chess.Colors.EMPTY
+  square_under_attack_by: (sq, color)->
+    mv        = new Chess.MoveGenerator(@)
     for r in [0..7]  
       for c in [0..7]
         pos = @rc_to_pos(r,c)
-        if @square_is_opp_color(pos, cur_color)
-          console.log(pos)
+        if @square_is_color(pos, color)
           moves = mv.moves_for_sq(pos)
           if moves.indexOf(sq) > -1
             return true
