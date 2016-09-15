@@ -1,4 +1,10 @@
 class Chess.Board
+  @SQUARES_NUMS = []
+  
+  @setup_valid_squares_numbers: ->
+    for r in [0..7]
+      for c in [0..7]
+        @SQUARES_NUMS.push r * 16 + c
   
   constructor: ->
     @board = []

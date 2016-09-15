@@ -62,7 +62,7 @@ class Chess.State extends Chess.Board
     
 
   square_under_attack_by: (sq, color)->
-    mv        = new Chess.MoveGenerator(@)
+    mv        = new Chess.AttackGenerator(@)
     for r in [0..7]  
       for c in [0..7]
         pos = @rc_to_pos(r,c)
