@@ -63,13 +63,11 @@ class Chess.State extends Chess.Board
 
   square_under_attack_by: (sq, color)->
     mv        = new Chess.AttackGenerator(@)
-    for r in [0..7]  
-      for c in [0..7]
-        pos = @rc_to_pos(r,c)
-        if @square_is_color(pos, color)
-          moves = mv.moves_for_sq(pos)
-          if moves.indexOf(sq) > -1
-            return true
+    for pos in Chess.Board.SQUARES_NUMS
+      if @square_is_color(pos, color)
+        moves = mv.moves_for_sq(pos)
+        if moves.indexOf(sq) > -1
+          return true
     return false  
 
   dump: ->
