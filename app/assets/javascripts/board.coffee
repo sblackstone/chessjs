@@ -11,9 +11,8 @@ class Chess.Board
     window.board = @ # debugging.
 
   clear_board: ->
-    for r in [0..7]
-      for c in [0..7]
-        @set_rc r,c,Chess.Pieces.EMPTY
+    for pos in Chess.Board.SQUARES_NUMS
+      @set pos,Chess.Pieces.EMPTY
   
   reset_state: ->
     @clear_board()
