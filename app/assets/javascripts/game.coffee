@@ -19,6 +19,26 @@ class Chess.Game extends Chess.State
     if @at(src) == Chess.Pieces.BLACK_PAWN && dst == @enpassant()
       @set dst+16, Chess.Pieces.EMPTY
 
+
+  _handle_castling_move: (src,dst) ->
+    if @at(src) == Chess.Pieces.WHITE_KING && src == 4 && dst == 6
+      @set 5, Chess.Pieces.WHITE_ROOK
+      @set 7, Chess.Pieces.EMPTY
+
+    if @at(src) == Chess.Pieces.WHITE_KING && src == 4 && dst == 2
+      @set 3, Chess.Pieces.WHITE_ROOK
+      @set 0, Chess.Pieces.EMPTY
+
+    if @at(src) == Chess.Pieces.BLACK_KING && src == 115 && dst == 117
+      @set 116, Chess.Pieces.BLACK_ROOK
+      @set 119, Chess.Pieces.EMPTY
+
+    if @at(src) == Chess.Pieces.WHITE_KING && src == 115 && dst == 113
+      @set 114, Chess.Pieces.BLACK_ROOK
+      @set 112, Chess.Pieces.EMPTY
+
+
+      
   # s[0] = Src Square
   # s[1] = Dst Square
   # s[2] = Taken Piece
@@ -27,9 +47,8 @@ class Chess.Game extends Chess.State
   make_move: (src,dst)->
     @move_stack.push [src, dst, @at(dst), @export_meta_state()]
     @_handle_enpassant_take(src,dst)
-
     @_set_enpassant_from_move(src, dst)
-
+    @_handle_castling_move(src, dst)
     @set dst, @at src
     @set src, Chess.Pieces.EMPTY
  
